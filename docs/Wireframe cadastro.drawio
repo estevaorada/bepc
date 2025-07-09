@@ -1,0 +1,130 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="27.2.0">
+  <diagram name="Página-1" id="8ktKUjLuSopr6MbcSvIK">
+    <mxGraphModel dx="872" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="60" width="710" height="940" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;" vertex="1" parent="1">
+          <mxGeometry x="30" y="60" width="710" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="30" y="20" width="710" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-5" value="Bepc." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="50" y="25" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-6" value="Iníco&amp;nbsp; &amp;nbsp; Categorias&amp;nbsp; &amp;nbsp;&amp;nbsp;Cursos&amp;nbsp; &amp;nbsp;&amp;nbsp;Níveis" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="140" y="25" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-7" value="Buscar..." style="rounded=1;whiteSpace=wrap;html=1;fontStyle=2;fontColor=#999999;" parent="1" vertex="1">
+          <mxGeometry x="440" y="27.5" width="146" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-8" value="+ Criar Aula" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#8b8989, #ededed);" parent="1" vertex="1">
+          <mxGeometry x="601" y="28" width="80" height="22.5" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-9" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#EDEDED);" parent="1" vertex="1">
+          <mxGeometry x="690" y="27.75" width="40" height="22.5" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-66" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCCCCC;" parent="1" vertex="1">
+          <mxGeometry x="30" y="1000" width="710" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-67" value="Bepc." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=25;" parent="1" vertex="1">
+          <mxGeometry x="90" y="1050" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-68" value="Informações da Instituição" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=15;" parent="1" vertex="1">
+          <mxGeometry x="390" y="1020" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-69" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum neque vel dui euismod scelerisque. Vestibulum eu odio sed velit fermentum bibendum eget id lorem. Fusce molestie, purus tempus ultricies congue, diam massa aliquam orci, in egestas nisi tellus in sem. Phasellus volutpat aliquam augue ac finibus. Pellentesque porttitor nunc sit amet mauris scelerisque pretium. Donec euismod ipsum vitae turpis molestie gravida. Vivamus id velit risus. Aenean mollis vel leo eu suscipit." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="390" y="1050" width="280" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-70" value="© Copyright 2025 - Instituição de Ensino.&amp;nbsp;&lt;div&gt;Todos os direitos reservados&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="30" y="1140" width="710" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RnOGg_c4IMyRPbAZXwW1-76" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn0.iconfinder.com/data/icons/phosphor-regular-vol-4/256/shopping-cart-128.png;imageBackground=default;" parent="1" vertex="1">
+          <mxGeometry x="700" y="30" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-2" value="Painel Administrativo" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-3" value="Vocês está logado como: Estevao Rada Oliveira (Docente)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="120" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="180" width="160" height="790" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-6" value="" style="swimlane;strokeColor=#666666;swimlaneFillColor=#FFFFFF;fillColor=#ffffff;fontColor=#008CFF;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=0;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fontSize=17;" vertex="1" parent="1">
+          <mxGeometry x="60" y="180" width="160" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-7" value="Meus Planos de Aula" style="text;spacing=4;strokeColor=inherit;align=left;verticalAlign=middle;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=inherit;fontColor=#666666;fontStyle=1;fontSize=13;spacingLeft=5;" vertex="1" parent="9P4Px6e0LPDuhDFU_HL_-6">
+          <mxGeometry width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-12" value="Aulas Cadastradas" style="text;spacing=4;strokeColor=inherit;align=left;verticalAlign=middle;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=inherit;fontColor=#666666;fontStyle=1;fontSize=13;spacingLeft=5;" vertex="1" parent="9P4Px6e0LPDuhDFU_HL_-6">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-13" value="Adicionar Aula" style="text;spacing=4;strokeColor=#36393d;align=left;verticalAlign=middle;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;fontStyle=1;fontSize=13;spacingLeft=16;" vertex="1" parent="9P4Px6e0LPDuhDFU_HL_-6">
+          <mxGeometry y="52" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-14" value="Meu Perfil" style="text;spacing=4;strokeColor=inherit;align=left;verticalAlign=middle;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=inherit;fontColor=#666666;fontStyle=1;fontSize=13;spacingLeft=5;" vertex="1" parent="9P4Px6e0LPDuhDFU_HL_-6">
+          <mxGeometry y="78" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-15" value="Sair" style="text;spacing=4;strokeColor=inherit;align=left;verticalAlign=middle;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=inherit;fontColor=#666666;fontStyle=1;fontSize=13;spacingLeft=5;" vertex="1" parent="9P4Px6e0LPDuhDFU_HL_-6">
+          <mxGeometry y="104" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="180" width="480" height="790" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-17" value="Adicionar nova aula" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="240" y="200" width="395" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-18" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="267" width="400" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-19" value="Título da Aula:" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="237" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-20" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="237.5" y="450" width="400" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-21" value="Descrição Metodológica:" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="237.5" y="420" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-22" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="237.5" y="650" width="400" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-23" value="Observações:" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="237.5" y="620" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-25" value="Disciplina:" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="300" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-26" value="Escolha a disciplina..." style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="238.75" y="330" width="400" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-27" value="" style="html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;shadow=0;dashed=0;strokeWidth=2;shape=mxgraph.ios7.misc.down;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="620" y="338.5" width="12" height="6" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-28" value="Categoria:" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="238.75" y="360" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-29" value="Escolha a categoria..." style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="237.5" y="390" width="400" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-30" value="" style="html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;shadow=0;dashed=0;strokeWidth=2;shape=mxgraph.ios7.misc.down;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="618.75" y="398.5" width="12" height="6" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-31" value="" style="dashed=0;labelPosition=right;align=left;shape=mxgraph.gmdl.checkbox;strokeColor=none;fillColor=#676767;strokeWidth=2;aspect=fixed;sketch=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="238.75" y="820" width="16" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-32" value="Concordo que ao publicar essa aula, todos os docentes cadastrados na plataforma terão acesso." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="260.75" y="813" width="370" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9P4Px6e0LPDuhDFU_HL_-33" value="Publicar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#8b8989, #ededed);" vertex="1" parent="1">
+          <mxGeometry x="237.5" y="870" width="402.5" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
