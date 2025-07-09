@@ -37,6 +37,9 @@ $niveis = $nivel->listar();
             padding: 80px 0;
             text-align: center;
         }
+        .navbar-brand img{
+            max-width: 85px;
+        }
 
         .topo-titulo {
             background: linear-gradient(to right, #212529, #636365);
@@ -54,11 +57,13 @@ $niveis = $nivel->listar();
             object-fit: cover;
         }
 
-        .footer-cta {
-            background: linear-gradient(to right, #212529, #636365);
+        .footer {
+            background: linear-gradient(to right, #212529, #272525);
             color: white;
-            text-align: center;
-            padding: 60px 20px;
+            padding: 30px;
+        }
+        .footer img{
+            filter: brightness(0) invert(1);
         }
 
         /* sidebar */
@@ -91,7 +96,9 @@ $niveis = $nivel->listar();
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">BEPC</a>
+            <a class="navbar-brand" href="home.php">
+                <img src="static/images/logo.png" alt="bepc Logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

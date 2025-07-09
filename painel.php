@@ -4,7 +4,17 @@ $heading_title = "Painel";
 require_once('includes/heading_title.php');
 ?>
 
-<h1>Painel</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+         <?php   require_once('includes/sidemenu.php'); ?>
+        </div>
+        <div class="col-md-6">
+            Conteudo
+        </div>
+    </div>
+
+</div>
 
 <?php
 require_once('includes/footer.php');
