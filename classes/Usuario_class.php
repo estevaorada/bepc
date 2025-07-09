@@ -22,6 +22,7 @@ class Usuario
      * @param bool $situacao Situação do usuário (ativo = 1, inativo = 0)
      * @return bool Retorna true se o cadastro for bem-sucedido, false caso contrário
      */
+    
     public function cadastrar($nome, $sobrenome, $id_tipo, $email, $senha, $situacao = 1)
     {
         // Validação de entrada
@@ -56,7 +57,6 @@ class Usuario
             $comando = $banco->prepare($sql);
             $hash = password_hash($senha, PASSWORD_BCRYPT);
             $result = $comando->execute([$nome, $sobrenome, $id_tipo, $email, $hash, $situacao ? 1 : 0]);
-
             return $result;
         } catch (PDOException $e) {
             error_log("Erro ao cadastrar usuário: " . $e->getMessage());

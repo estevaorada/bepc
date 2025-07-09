@@ -1,0 +1,199 @@
+<?php
+session_start();
+
+// Verifica se o usuário está autenticado
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true) {
+    // Redireciona para a página de login se não estiver autenticado
+    header('Location: index.php?erro=1');
+    exit;
+}
+require_once('classes/Categoria_class.php');
+$categoria = new Categoria();
+$categorias = $categoria->listar();
+
+require_once('classes/Curso_class.php');
+$curso = new Curso();
+$cursos = $curso->listar();
+
+require_once('classes/Nivel_class.php');
+$nivel = new Nivel();
+$niveis = $nivel->listar();
+
+
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bepc - Compartilhe Planos de Aula</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        .hero {
+            background: linear-gradient(to right, #212529, #636365);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .topo-titulo {
+            background: linear-gradient(to right, #212529, #636365);
+            color: white;
+            padding: 50px;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            margin: 5px;
+        }
+
+        .popular-card img {
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .footer-cta {
+            background: linear-gradient(to right, #212529, #636365);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        /* sidebar */
+        .sidebar {
+            width: 100%;
+            background-color: #ebebeb;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .sidebar .nav-link {
+            color: #333;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #e9ecef;
+        }
+
+        .sidebar .nav-item .nav-link.active {
+            background-color: #007bff;
+            color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">BEPC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.php">Início</a>
+                    </li>
+                    <!-- Dropdown Categorias -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoriasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="categoriasDropdown">
+                            <?php
+                            if (is_null($categorias)) {
+                                echo '<li><a class="dropdown-item" href="#">Erro ao carregar categorias</a></li>';
+                            } elseif (empty($categorias)) {
+                                echo '<li><a class="dropdown-item" href="#">Nenhuma categoria encontrada</a></li>';
+                            } else {
+                                // Gera a lista de categorias
+                                foreach ($categorias as $cat) {
+                            ?>
+                                    <li><a class="dropdown-item" href="aulas_listar.php?categoria=<?= $cat['id']; ?>"><?= $cat['nome'] ?></a></li>
+                            <?php
+                                }
+                            }
+                            ?>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="aulas_listar.php">Ver todas</a></li>
+                        </ul>
+                    </li>
+                    <!-- Dropdown Cursos -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="cursosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cursos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="cursosDropdown">
+                            <?php
+                            if (is_null($cursos)) {
+                                echo '<li><a class="dropdown-item" href="#">Erro ao carregar cursos</a></li>';
+                            } elseif (empty($cursos)) {
+                                echo '<li><a class="dropdown-item" href="#">Nenhum curso encontrado</a></li>';
+                            } else {
+                                // Gera a lista de categorias
+                                foreach ($cursos as $cur) {
+                            ?>
+                                    <li><a class="dropdown-item" href="aulas_listar.php?curso=<?= $cur['id']; ?>"><?= $cur['nome'] ?></a></li>
+                            <?php
+                                }
+                            }
+                            ?>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="aulas_listar.php">Ver todos</a></li>
+                        </ul>
+                    </li>
+                    <!-- Dropdown Níveis -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="niveisDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Níveis
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="niveisDropdown">
+                            <?php
+                            if (is_null($niveis)) {
+                                echo '<li><a class="dropdown-item" href="#">Erro ao carregar categorias</a></li>';
+                            } elseif (empty($niveis)) {
+                                echo '<li><a class="dropdown-item" href="#">Nenhuma categoria encontrada</a></li>';
+                            } else {
+                                // Gera a lista de categorias
+                                foreach ($niveis as $ni) {
+                            ?>
+                                    <li><a class="dropdown-item" href="aulas_listar.php?nivel=<?= $ni['id']; ?>"><?= $ni['nome'] ?></a></li>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex me-2">
+                    <input class="form-control me-2" type="search" placeholder="Buscar aulas..." aria-label="Search">
+                </form>
+                <a class="btn btn-outline-secondary me-2" href="aulas_criar.php">+ Criar Aula</a>
+                <a href="carrinho.php" class="btn btn-dark"><i class="bi bi-basket2"></i></a>
+                <!-- Dropdown Usuário -->
+                <div class="dropdown ms-2">
+                    <button class="btn btn-dark dropdown-toggle" type="button" id="usuarioDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['dados_usuario']['nome']); ?>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+                        <li><a class="dropdown-item" href="painel.php">Painel</a></li>
+                        <li><a class="dropdown-item" href="painel_aulas.php">Minhas Aulas</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="sair.php">Sair</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>

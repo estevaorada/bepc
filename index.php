@@ -1,3 +1,12 @@
+<?php
+session_start();
+// Verifica se o usuário já está autenticado
+if (isset($_SESSION['autenticado'])) {
+    // Redireciona para a página de início se estiver autenticado
+    header('Location: home.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,14 +65,14 @@
         <div class="login-container rounded-3 shadow p-4 blur-bg animate__animated animate__fadeInDown">
             <img src="static/images/logo.png" alt="Logotipo Bepc" class="mb-4" />
             <!-- <h3 class="text-center mb-4">Login</h3> -->
-            <form>
+            <form action="actions/usuario_logar.php" method="post">
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Digite seu e-mail">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                    <input type="password" name="senha" class="form-control" id="password" placeholder="Digite sua senha">
                 </div>
                 <button type="submit" class="btn btn-outline-dark w-100 mt-3">Entrar</button>
             </form>
