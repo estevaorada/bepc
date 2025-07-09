@@ -7,7 +7,7 @@ require_once('includes/header.php');
   <div class="container">
     <h1 class="display-5 fw-bold">Descubra e Compartilhe<br>Planos de Aula Incríveis</h1>
     <p class="lead">Uma plataforma colaborativa onde educadores criam, descobrem e compartilham aulas de qualidade para inspirar o aprendizado.</p>
-    <button class="btn btn-light mt-3">Criar Primeira Aula</button>
+    <!-- <button class="btn btn-light mt-3">Criar Primeira Aula</button> -->
   </div>
 </section>
 

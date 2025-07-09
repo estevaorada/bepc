@@ -6,7 +6,7 @@
          <img src="static/images/logo.png" alt="bepc." class="mx-auto d-block w-50" />
        </div>
        <div class="col-md-8">
-         <p class="fs-4">Centro Universitário Teresa D'avilla</p>
+         <p class="fs-4 fw-bold">Centro Universitário Teresa D'avilla</p>
          <p>Localizado no Vale do Paraíba na cidade de Lorena, o Centro Universitário Teresa D’Ávila recebe alunos de várias regiões como Sul de Minas, Sul Fluminense e Litoral Norte e tem nos alunos formados o maior exemplo de qualidade do seu ensino: profissionais em cargos estratégicos na educação e em empresas da região, do Brasil e de vários países do Mundo.</p>
        </div>
      </div>
