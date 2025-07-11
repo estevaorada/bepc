@@ -53,44 +53,56 @@ require_once('includes/header.php');
       <!-- Card 1 -->
       <div class="col-md-3">
         <div class="card popular-card">
-          <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="Matemática">
           <div class="card-body">
             <h6 class="card-title">Introdução à Matemática Básica</h6>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas voluptatibus praesentium culpa? Consequuntur similique placeat, assumenda...</p>
             <p class="small">Por: Prof. Lucas Silva</p>
-            <button class="btn btn-sm btn-outline-dark w-100">Adicionar ao Plano</button>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</button>
+              <button class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</button>
+            </div>
           </div>
         </div>
       </div>
       <!-- Card 2 -->
       <div class="col-md-3">
         <div class="card popular-card">
-          <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="Python">
           <div class="card-body">
             <h6 class="card-title">Programação com Python</h6>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas voluptatibus praesentium culpa? Consequuntur similique placeat, assumenda...</p>
             <p class="small">Por: Prof. Ana Costa</p>
-            <button class="btn btn-sm btn-outline-dark w-100">Adicionar ao Plano</button>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</button>
+              <button class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</button>
+            </div>
           </div>
         </div>
       </div>
       <!-- Card 3 -->
       <div class="col-md-3">
         <div class="card popular-card">
-          <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="Ciência">
           <div class="card-body">
             <h6 class="card-title">Fotossíntese e Respiração</h6>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas voluptatibus praesentium culpa? Consequuntur similique placeat, assumenda...</p>
             <p class="small">Por: Prof. Carlos Lima</p>
-            <button class="btn btn-sm btn-outline-dark w-100">Adicionar ao Plano</button>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</button>
+              <button class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</button>
+            </div>
           </div>
         </div>
       </div>
       <!-- Card 4 -->
       <div class="col-md-3">
         <div class="card popular-card">
-          <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="História">
           <div class="card-body">
             <h6 class="card-title">História do Brasil Colonial</h6>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas voluptatibus praesentium culpa? Consequuntur similique placeat, assumenda...</p>
             <p class="small">Por: Prof. João Santos</p>
-            <button class="btn btn-sm btn-outline-dark w-100">Adicionar ao Plano</button>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</button>
+              <button class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</button>
+            </div>
           </div>
         </div>
       </div>

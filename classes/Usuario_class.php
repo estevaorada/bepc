@@ -22,7 +22,7 @@ class Usuario
      * @param bool $situacao Situação do usuário (ativo = 1, inativo = 0)
      * @return bool Retorna true se o cadastro for bem-sucedido, false caso contrário
      */
-    
+
     public function cadastrar($nome, $sobrenome, $id_tipo, $email, $senha, $situacao = 1)
     {
         // Validação de entrada
@@ -74,6 +74,7 @@ class Usuario
     {
         // Validação de entrada
         if (empty($email) || empty($senha) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo 1;
             return null;
         }
 
@@ -83,7 +84,10 @@ class Usuario
         }
 
         try {
-            $sql = "SELECT id, nome, sobrenome, id_tipo, email, senha, situacao, data_cadastro FROM usuarios WHERE email = ?";
+            $sql = "SELECT u.id, u.nome, u.sobrenome, u.id_tipo, u.email, u.senha, u.situacao, u.data_cadastro, t.nome_tipo AS tipo 
+            FROM usuarios u
+            INNER JOIN usuarios_tipo t ON u.id_tipo = t.id
+            WHERE u.email = ?";
             $comando = $banco->prepare($sql);
             $comando->execute([$email]);
             $usuario = $comando->fetch(PDO::FETCH_ASSOC);
@@ -102,6 +106,42 @@ class Usuario
             return null;
         } catch (PDOException $e) {
             error_log("Erro ao realizar login: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function listarTodos($idTipoUsuario, $ativo = 1)
+    {
+        // Validação de permissão
+        if (!is_numeric($idTipoUsuario) || $idTipoUsuario != 1) {
+            return null; // Apenas usuários com id_tipo == 1 podem acessar
+        }
+
+        $banco = Banco::conectar();
+        if (!$banco) {
+            return null;
+        }
+
+        try {
+            // Consulta com INNER JOIN para trazer o nome do tipo, excluindo a senha
+            if ($ativo) {
+                $sql = "SELECT u.id, u.nome, u.sobrenome, u.data_cadastro, u.situacao, u.email, u.id_tipo, t.nome_tipo AS tipo_nome 
+                    FROM usuarios u 
+                    INNER JOIN usuarios_tipo t ON u.id_tipo = t.id
+                    WHERE u.situacao = 1";
+            } else {
+                $sql = "SELECT u.id, u.nome, u.sobrenome, u.data_cadastro, u.situacao, u.email, u.id_tipo, t.nome_tipo AS tipo_nome 
+                    FROM usuarios u 
+                    INNER JOIN usuarios_tipo t ON u.id_tipo = t.id
+                    WHERE u.situacao = 0";
+            }
+            $comando = $banco->prepare($sql);
+            $comando->execute();
+            $usuarios = $comando->fetchAll(PDO::FETCH_ASSOC);
+
+            return $usuarios;
+        } catch (PDOException $e) {
+            error_log("Erro ao listar todos os usuários: " . $e->getMessage());
             return null;
         }
     }
@@ -127,7 +167,7 @@ class Usuario
                 return false; // Usuário não encontrado
             }
 
-            // Atualiza a situação para 1 (inativo)
+            // Atualiza a situação para 0 (inativo)
             $sql = "UPDATE usuarios SET situacao = 0 WHERE id = ?";
             $comando = $banco->prepare($sql);
             $result = $comando->execute([$id]);
@@ -139,6 +179,116 @@ class Usuario
         }
     }
 
+
+    /**
+     * Modifica os dados pessoais (nome, sobrenome e email) de um usuário.
+     * Apenas o próprio usuário ou administradores (id_tipo == 1) podem modificar.
+     * @param int $idUsuarioLogado ID do usuário logado
+     * @param int $idTipoUsuario Tipo do usuário logado
+     * @param int $idUsuarioModificado ID do usuário a ser modificado
+     * @param string $nome Novo nome
+     * @param string $sobrenome Novo sobrenome
+     * @param string $email Novo email
+     * @return bool Retorna true se a modificação for bem-sucedida, false caso contrário
+     */
+    public function modificarDadosPessoais($idUsuarioLogado, $idTipoUsuario, $idUsuarioModificado, $nome, $sobrenome, $email)
+    {
+        if (
+            !is_numeric($idUsuarioLogado) || !is_numeric($idTipoUsuario) || !is_numeric($idUsuarioModificado) ||
+            $idUsuarioLogado <= 0 || $idUsuarioModificado <= 0 ||
+            empty($nome) || empty($sobrenome) || empty($email) ||
+            strlen($nome) > 100 || strlen($sobrenome) > 100 || !filter_var($email, FILTER_VALIDATE_EMAIL)
+        ) {
+            return false;
+        }
+
+        if ($idUsuarioLogado != $idUsuarioModificado && $idTipoUsuario != 1) {
+            return false;
+        }
+
+        $banco = Banco::conectar();
+        if (!$banco) {
+            return false;
+        }
+
+        try {
+            $sql = "SELECT COUNT(*) FROM usuarios WHERE id = ?";
+            $comando = $banco->prepare($sql);
+            $comando->execute([$idUsuarioModificado]);
+            if ($comando->fetchColumn() == 0) {
+                return false;
+            }
+
+            $sql = "UPDATE usuarios SET nome = ?, sobrenome = ?, email = ? WHERE id = ?";
+            $comando = $banco->prepare($sql);
+            $result = $comando->execute([$nome, $sobrenome, $email, $idUsuarioModificado]);
+
+            return $result;
+        } catch (PDOException $e) {
+            error_log("Erro ao modificar dados pessoais: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Modifica a senha de um usuário. O próprio usuário deve fornecer a senha atual,
+     * enquanto administradores (id_tipo == 1) podem modificá-la sem verificação.
+     * @param int $idUsuarioLogado ID do usuário logado
+     * @param int $idTipoUsuario Tipo do usuário logado
+     * @param int $idUsuarioModificado ID do usuário cuja senha será modificada
+     * @param string $senhaAtual Senha atual informada (necessária para o próprio usuário)
+     * @param string $novaSenha Nova senha a ser definida
+     * @return bool Retorna true se a modificação for bem-sucedida, false caso contrário
+     */
+    public function modificarSenha($idUsuarioLogado, $idTipoUsuario, $idUsuarioModificado, $senhaAtual, $novaSenha)
+    {
+        // Validação de entrada
+        if (
+            !is_numeric($idUsuarioLogado) || !is_numeric($idTipoUsuario) || !is_numeric($idUsuarioModificado) ||
+            $idUsuarioLogado <= 0 || $idUsuarioModificado <= 0 ||
+            empty($novaSenha) || strlen($novaSenha) < 6
+        ) {
+            return false;
+        }
+
+        // Validação de permissão
+        if ($idUsuarioLogado != $idUsuarioModificado && $idTipoUsuario != 1) {
+            return false; // Apenas o próprio usuário ou administradores podem modificar
+        }
+
+        $banco = Banco::conectar();
+        if (!$banco) {
+            return false;
+        }
+
+        try {
+            // Verifica se o usuário existe
+            $sql = "SELECT senha FROM usuarios WHERE id = ?";
+            $comando = $banco->prepare($sql);
+            $comando->execute([$idUsuarioModificado]);
+            $usuario = $comando->fetch(PDO::FETCH_ASSOC);
+
+            if (!$usuario) {
+                return false; // Usuário não encontrado
+            }
+
+            // Se for o próprio usuário, verifica a senha atual
+            if ($idUsuarioLogado == $idUsuarioModificado && (!isset($senhaAtual) || empty($senhaAtual) || !password_verify($senhaAtual, $usuario['senha']))) {
+                return false; // Senha atual incorreta
+            }
+
+            // Atualiza a senha com hash
+            $novaSenhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
+            $sql = "UPDATE usuarios SET senha = ? WHERE id = ?";
+            $comando = $banco->prepare($sql);
+            $result = $comando->execute([$novaSenhaHash, $idUsuarioModificado]);
+
+            return $result;
+        } catch (PDOException $e) {
+            error_log("Erro ao modificar senha: " . $e->getMessage());
+            return false;
+        }
+    }
     // Getters
     public function getId()
     {
@@ -175,5 +325,3 @@ class Usuario
         return $this->data_cadastro;
     }
 }
-
-?>

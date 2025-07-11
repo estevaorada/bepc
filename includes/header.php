@@ -37,7 +37,8 @@ $niveis = $nivel->listar();
             padding: 80px 0;
             text-align: center;
         }
-        .navbar-brand img{
+
+        .navbar-brand img {
             max-width: 85px;
         }
 
@@ -62,7 +63,8 @@ $niveis = $nivel->listar();
             color: white;
             padding: 30px;
         }
-        .footer img{
+
+        .footer img {
             filter: brightness(0) invert(1);
         }
 
@@ -87,6 +89,11 @@ $niveis = $nivel->listar();
             background-color: #007bff;
             color: white;
 
+        }
+        .user-icon{
+            max-width: 300px;
+            width: 50%;
+            border-radius: 50%;
         }
     </style>
 </head>
@@ -193,8 +200,9 @@ $niveis = $nivel->listar();
                         <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['dados_usuario']['nome']); ?>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
-                        <li><a class="dropdown-item" href="painel.php">Painel</a></li>
+                        <li><a class="dropdown-item" href="painel.php">Perfil</a></li>
                         <li><a class="dropdown-item" href="painel_aulas.php">Minhas Aulas</a></li>
+                        <li><a class="dropdown-item" href="painel_aulas.php">Meus Planos de Aulas</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
