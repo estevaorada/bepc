@@ -61,7 +61,7 @@ class Nivel
         try {
             if (is_null($id)) {
                 // Lista todos os níveis
-                $sql = "SELECT id, nome FROM niveis";
+                $sql = "SELECT id, nome FROM niveis ORDER BY nome";
                 $comando = $banco->prepare($sql);
                 $comando->execute();
                 return $comando->fetchAll(PDO::FETCH_ASSOC);

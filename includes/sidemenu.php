@@ -11,7 +11,7 @@
                         </a>
                         <ul class="collapse nav flex-column ms-3" id="planosSubmenu">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Meus Planos de Aula</a>
+                                <a class="nav-link" href="planos_listar.php">Meus Planos de Aula</a>
                             </li>
                         </ul>
                     </li>
@@ -21,10 +21,10 @@
                         </a>
                         <ul class="collapse nav flex-column ms-3" id="aulasSubmenu">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Minhas Aulas</a>
+                                <a class="nav-link" href="aulas_minhas.php">Minhas Aulas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Criar aula</a>
+                                <a class="nav-link" href="aulas_criar.php">Criar aula</a>
                             </li>
                         </ul>
                     </li>
@@ -51,7 +51,7 @@
                     </li>
                     <?php } ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-box-arrow-left"></i> Sair</a>
+                        <a class="nav-link" href="sair.php"><i class="bi bi-box-arrow-left"></i> Sair</a>
                     </li>
                 </ul>
             </nav>

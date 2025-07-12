@@ -1,6 +1,6 @@
 <?php
-require_once('includes/header.php');
 $heading_title = "Perfil";
+require_once('includes/header.php');
 require_once('includes/heading_title.php');
 ?>
 

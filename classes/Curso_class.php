@@ -70,7 +70,9 @@ class Curso
         try {
             if (is_null($id)) {
                 // Lista todos os cursos
-                $sql = "SELECT id, nome, id_nivel FROM cursos ORDER BY nome ASC";
+                $sql = "SELECT c.id, c.nome, c.id_nivel, n.nome AS 'nivel_nome' FROM cursos c 
+                INNER JOIN niveis n ON c.id_nivel = n.id 
+                ORDER BY c.nome ASC";
                 $comando = $banco->prepare($sql);
                 $comando->execute();
                 return $comando->fetchAll(PDO::FETCH_ASSOC);

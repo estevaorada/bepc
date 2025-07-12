@@ -1,6 +1,6 @@
 <?php
-require_once('includes/header.php');
 $heading_title = "Gerenciar Categorias";
+require_once('includes/header.php');
 require_once('includes/heading_title.php');
 // Verifica se o usuário é administrador: 
 if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
@@ -34,10 +34,10 @@ if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
                                 <td><?= $cat['nome'] ?></td>
                                 <td><?= $cat['descricao'] ?></td>
                                 <td>
-                                    <a type="button" class="btn btn-danger me-2" href="actions/categoria_apagar.php?id=<?= $cat['id'] ?>">
+                                    <a type="button" class="btn btn-danger me-2 btn-sm" href="actions/categoria_apagar.php?id=<?= $cat['id'] ?>">
                                         <i class="bi bi-x"></i>
                                     </a>
-                                    <a type="button" class="btn btn-dark" href="actions/categoria_editar.php?id=<?= $cat['id'] ?>">
+                                    <a type="button" class="btn btn-dark btn-sm" href="actions/categoria_editar.php?id=<?= $cat['id'] ?>">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                 </td>

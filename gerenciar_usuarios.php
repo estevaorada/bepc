@@ -1,6 +1,6 @@
 <?php
-require_once('includes/header.php');
 $heading_title = "Gerenciar Usuários";
+require_once('includes/header.php');
 require_once('includes/heading_title.php');
 // Verifica se o usuário é administrador: 
 if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
@@ -25,7 +25,7 @@ if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
                             <th scope="col">E-mail</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Situação</th>
-                            <th scope="col">Data de Cadastro</th>
+                            <th scope="col">Cadastro</th>
                             <th scope="col">Ação</th>
                         </tr>
                     </thead>
@@ -52,10 +52,10 @@ if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
                                 <td><?= date('d/m/Y', strtotime($us['data_cadastro'])) ?></td>
 
                                 <td>
-                                    <a type="button" class="btn btn-danger me-2" href="actions/usuario_desativar.php?id=<?= $us['id'] ?>">
+                                    <a type="button" class="btn btn-danger btn-sm me-2" href="actions/usuario_desativar.php?id=<?= $us['id'] ?>">
                                         <i class="bi bi-x"></i>
                                     </a>
-                                    <a type="button" class="btn btn-dark" href="actions/usuario_desativar.php?id=<?= $us['id'] ?>">
+                                    <a type="button" class="btn btn-dark btn-sm" href="actions/usuario_desativar.php?id=<?= $us['id'] ?>">
                                         <i class="bi bi-pencil"></i>
                                     </a>
 

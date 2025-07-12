@@ -27,7 +27,8 @@ $niveis = $nivel->listar();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>bepc - Compartilhe Planos de Aula</title>
+    <title>bepc :: <?php echo isset($heading_title) ? $heading_title : "Compartilhe planos de aula" ?></title>
+    <link href="static/images/favicon.png" rel="icon" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
@@ -94,6 +95,9 @@ $niveis = $nivel->listar();
             max-width: 300px;
             width: 50%;
             border-radius: 50%;
+        }
+        .ray-editor-content{
+            min-height: 250px;
         }
     </style>
 </head>
@@ -174,9 +178,9 @@ $niveis = $nivel->listar();
                         <ul class="dropdown-menu" aria-labelledby="niveisDropdown">
                             <?php
                             if (is_null($niveis)) {
-                                echo '<li><a class="dropdown-item" href="#">Erro ao carregar categorias</a></li>';
+                                echo '<li><a class="dropdown-item" href="#">Erro ao carregar niveis</a></li>';
                             } elseif (empty($niveis)) {
-                                echo '<li><a class="dropdown-item" href="#">Nenhuma categoria encontrada</a></li>';
+                                echo '<li><a class="dropdown-item" href="#">Nenhum nivel encontrado</a></li>';
                             } else {
                                 // Gera a lista de categorias
                                 foreach ($niveis as $ni) {

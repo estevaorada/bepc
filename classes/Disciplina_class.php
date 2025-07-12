@@ -67,7 +67,6 @@ class Disciplina
         if (!$banco) {
             return null;
         }
-
         try {
             if (!is_null($id)) {
                 // Lista uma disciplina específica por ID
@@ -91,13 +90,18 @@ class Disciplina
                 if (!is_numeric($id_curso) || $id_curso <= 0) {
                     return null;
                 }
-                $sql = "SELECT id, nome, id_curso FROM disciplinas WHERE id_curso = ?";
+                $sql = "SELECT d.id, d.nome, d.id_curso, c.nome AS 'nome_curso' FROM disciplinas d
+                        JOIN cursos c ON d.id_curso = c.id
+                WHERE id_curso = ?
+                ORDER BY d.nome";
                 $comando = $banco->prepare($sql);
                 $comando->execute([$id_curso]);
                 return $comando->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 // Lista todas as disciplinas
-                $sql = "SELECT id, nome, id_curso FROM disciplinas";
+                $sql = "SELECT d.id, d.nome, d.id_curso, c.nome AS 'nome_curso' FROM disciplinas d
+                        INNER JOIN cursos c ON d.id_curso = c.id
+                        ORDER BY d.nome";
                 $comando = $banco->prepare($sql);
                 $comando->execute();
                 return $comando->fetchAll(PDO::FETCH_ASSOC);
