@@ -4,7 +4,7 @@ class Banco
 {
     // As credenciais devem ser trocadas de acordo com o banco de dados:
     private static $dbNome = 'bepc';
-    private static $dbHost = 'localhost';
+    private static $dbHost = 'localhost:4306';
     private static $dbUsuario = 'root';
     private static $dbSenha = '';
 

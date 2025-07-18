@@ -19,7 +19,7 @@ class Aula
      * @param int|null $idCurso Filtro por ID do curso
      * @return array|null Retorna um array com as aulas ou null em caso de erro
      */
-    public function listar($idUsuario = null, $idDisciplina = null, $idCurso = null)
+    public function listar($idUsuario = null, $idDisciplina = null, $idCurso = null, $idAula = null)
     {
         $banco = Banco::conectar();
         if (!$banco) {
@@ -27,23 +27,47 @@ class Aula
         }
 
         try {
-            $sql = "SELECT a.id, a.id_usuario, a.id_disciplina, a.data_cadastrada, a.descricao, a.id_categoria
-                           u.nome AS usuario_nome, d.nome AS disciplina_nome, c.nome AS categoria_nome
+            if ($idAula == null) {
+            $sql = "SELECT a.id, a.titulo, a.id_usuario, a.id_disciplina, a.data_cadastrada, SUBSTRING(a.descricao,1,300) AS 'descricao', a.id_categoria, a.observacoes,
+                           u.nome AS usuario_nome, u.sobrenome AS 'usuario_sobrenome' , d.nome AS disciplina_nome, c.nome AS categoria_nome
                     FROM aulas a
                     INNER JOIN usuarios u ON a.id_usuario = u.id
                     INNER JOIN disciplinas d ON a.id_disciplina = d.id
                     INNER JOIN categorias c ON a.id_categoria = c.id
-                    WHERE (:idUsuario IS NULL OR a.id_usuario = :idUsuario)
-                    AND (:idDisciplina IS NULL OR a.id_disciplina = :idDisciplina)";
+                    WHERE (:idUsuario IS NULL OR a.id_usuario = :idUsuario1)
+                    AND (:idDisciplina IS NULL OR a.id_disciplina = :idDisciplina1)
+                    AND (:idAula IS NULL OR a.id = :idAula1)";
+            } else {
+            $sql = "SELECT a.id, a.titulo, a.id_usuario, a.id_disciplina, a.data_cadastrada, a.descricao, a.id_categoria, a.observacoes,
+                           u.nome AS usuario_nome, u.sobrenome AS 'usuario_sobrenome' , d.nome AS disciplina_nome, c.nome AS categoria_nome
+                    FROM aulas a
+                    INNER JOIN usuarios u ON a.id_usuario = u.id
+                    INNER JOIN disciplinas d ON a.id_disciplina = d.id
+                    INNER JOIN categorias c ON a.id_categoria = c.id
+                    WHERE (:idUsuario IS NULL OR a.id_usuario = :idUsuario1)
+                    AND (:idDisciplina IS NULL OR a.id_disciplina = :idDisciplina1)
+                    AND (:idAula IS NULL OR a.id = :idAula1)";
+            }
             $comando = $banco->prepare($sql);
+
             $comando->execute([
                 ':idUsuario' => $idUsuario,
-                ':idDisciplina' => $idDisciplina
+                ':idDisciplina' => $idDisciplina,
+                ':idUsuario1' => $idUsuario,
+                ':idDisciplina1' => $idDisciplina,
+                ':idAula1' => $idAula,
+                'idAula' => $idAula
             ]);
             $aulas = $comando->fetchAll(PDO::FETCH_ASSOC);
-
+            if ($idAula == null) {
+                // Remover tags HTML da descrição
+                foreach ($aulas as &$item) {
+                    $item['descricao'] = substr(strip_tags($item['descricao']), 0, 100);
+                }
+            }
             return $aulas;
         } catch (PDOException $e) {
+            // echo $e->getMessage();
             error_log("Erro ao listar aulas: " . $e->getMessage());
             return null;
         }
@@ -117,10 +141,12 @@ class Aula
      * @param string $conteudo Conteúdo da aula
      * @return bool Retorna true se o cadastro for bem-sucedido, false caso contrário
      */
-    public function cadastrar($idUsuarioLogado, $idDisciplina, $titulo , $descricao, $observacoes, $idCategoria)
+    public function cadastrar($idUsuarioLogado, $idDisciplina, $titulo, $descricao, $observacoes, $idCategoria)
     {
-        if (!is_numeric($idUsuarioLogado) || !is_numeric($idDisciplina) || !is_numeric($idCategoria) ||
-            $idUsuarioLogado <= 0 || $idDisciplina <= 0 || empty($titulo) || empty($descricao)) {
+        if (
+            !is_numeric($idUsuarioLogado) || !is_numeric($idDisciplina) || !is_numeric($idCategoria) ||
+            $idUsuarioLogado <= 0 || $idDisciplina <= 0 || empty($titulo) || empty($descricao)
+        ) {
             return false;
         }
 
@@ -193,6 +219,4 @@ class Aula
     {
         return $this->id_categoria;
     }
-
 }
-?>

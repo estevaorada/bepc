@@ -113,9 +113,9 @@ require_once('includes/heading_title.php');
     document.getElementById('ray-editor-watermark').innerHTML = '<a href="https://rohanyeole.com/ray-editor/" target="_blank">RayEditor</a>';
     document.querySelector('#cadastroAulaForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        alert('Aula cadastrada com sucesso!');
+        //alert('Aula cadastrada com sucesso!');
         document.getElementById('editor_conteudo').value = document.querySelector('#editor .ray-editor-content').innerHTML;
-        alert('Conteúdo da aula: ' + document.getElementById('editor_conteudo').value);
+        //alert('Conteúdo da aula: ' + document.getElementById('editor_conteudo').value);
         this.submit();
     });
 </script>

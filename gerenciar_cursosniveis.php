@@ -58,6 +58,7 @@ if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
                 <button type="button" class="btn btn-dark mb-3 float-end" data-bs-toggle="modal" data-bs-target="#cadastroCursoModal">
                     <i class="bi bi-plus-circle-fill"></i> Cadastrar Curso
                 </button>
+                <div class="clearfix"></div>
                 <table class="table table-hover mb-4">
                     <thead>
                         <tr>
