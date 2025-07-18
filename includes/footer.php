@@ -1,6 +1,6 @@
  <!-- Rodapé -->
  <section class="mt-3 footer">
-   <div class="container-fluid">
+   <div class="container">
      <div class="row">
        <div class="col-md-4">
          <img src="static/images/logo.png" alt="bepc." class="mx-auto d-block w-50" />

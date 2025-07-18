@@ -24,7 +24,7 @@ require_once('includes/heading_title.php');
                         <div class="col-md-4">
                             <div class="card popular-card">
                                 <div class="card-body">
-                                    <h6 class="card-title"><?= htmlspecialchars(htmlspecialchars($a['titulo'])) ?></h6>
+                                     <h6 class="card-title"> <a href="aula_detalhe.php?id=<?= htmlspecialchars($a['id']) ?>" class="text-dark"><?= htmlspecialchars(htmlspecialchars($a['titulo'])) ?></a></h6>
                                     <p><?= $a['descricao'] . '...' ?></p>
                                     <p class="small"><i class="bi bi-person-fill"></i> <?= $a['usuario_nome']." ".$a['usuario_sobrenome'] ?><br>
                                     <i class="bi bi-journal-bookmark-fill"></i> <?= htmlspecialchars($a['disciplina_nome']) ?></p>
