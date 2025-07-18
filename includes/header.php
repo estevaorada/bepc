@@ -148,7 +148,7 @@ $niveis = $nivel->listar();
                     </li>
                 </ul>
                 <form class="d-flex me-2">
-                    <input class="form-control me-2" type="search" placeholder="Buscar aulas..." aria-label="Search">
+                    <input class="form-control me-2" id="busca_topo" name="busca_topo" type="search" placeholder="Buscar aulas..." aria-label="Buscar aulas">
                 </form>
                 <a class="btn btn-outline-secondary me-2" href="aulas_criar.php">+ Criar Aula</a>
                 <a href="carrinho.php" class="btn btn-dark"><i class="bi bi-basket2"></i></a>
