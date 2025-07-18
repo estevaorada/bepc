@@ -47,6 +47,7 @@ require_once('includes/heading_title.php');
                         <strong>Por:</strong> <?= htmlspecialchars($aulas[0]['usuario_nome'] . ' ' . $aulas[0]['usuario_sobrenome']) ?></p>
                         <a href ="actions/carrinho_adicionar.php?id=<?=$id_aula ?>" class="btn btn-lg btn-dark w-100 py-3"><i class="bi bi-cart-plus-fill"></i> Adicionar</a>
                     </div>
+                    
                 </div>
             <?php
             }

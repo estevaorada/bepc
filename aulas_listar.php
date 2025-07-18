@@ -7,10 +7,12 @@ require_once('includes/heading_title.php');
 
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
-            Menu Lateral
+        <div class="col-md-3">
+            <?php
+            require_once('includes/sidemenu_front.php');
+            ?>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-9">
             <div class="container">
                 <h5 class="mb-4">📈 Aulas Mais Recentes</h5>
                 <div class="row g-4">
@@ -24,10 +26,11 @@ require_once('includes/heading_title.php');
                         <div class="col-md-4">
                             <div class="card popular-card">
                                 <div class="card-body">
-                                     <h6 class="card-title"> <a href="aula_detalhe.php?id=<?= htmlspecialchars($a['id']) ?>" class="text-dark"><?= htmlspecialchars(htmlspecialchars($a['titulo'])) ?></a></h6>
+                                    <h6 class="card-title"> <a href="aula_detalhe.php?id=<?= htmlspecialchars($a['id']) ?>" class="text-dark"><?= htmlspecialchars(htmlspecialchars($a['titulo'])) ?></a></h6>
                                     <p><?= $a['descricao'] . '...' ?></p>
-                                    <p class="small"><i class="bi bi-person-fill"></i> <?= $a['usuario_nome']." ".$a['usuario_sobrenome'] ?><br>
-                                    <i class="bi bi-journal-bookmark-fill"></i> <?= htmlspecialchars($a['disciplina_nome']) ?></p>
+                                    <p class="small"><i class="bi bi-person-fill"></i> <?= $a['usuario_nome'] . " " . $a['usuario_sobrenome'] ?><br>
+                                        <i class="bi bi-journal-bookmark-fill"></i> <?= htmlspecialchars($a['disciplina_nome']) ?>
+                                    </p>
                                     <div class="d-flex gap-2">
                                         <a href="aula_detalhe.php?id=<?= htmlspecialchars($a['id']) ?>" class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</a>
                                         <a href="actions/carrinho_adicionar.php?id=<?= htmlspecialchars($a['id']) ?>" class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</a>
