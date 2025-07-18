@@ -1,3 +1,25 @@
+<!-- 
+                             /`\
+                            / : |
+                   _.._     | '/
+                 /`    \    | /
+                |  .-._ '-"` (
+                |_/   /   o  o\
+                      |  =  () )=
+                       \  '--`/
+                       / ---<`
+                      | ,    \\
+                      | |     \\__
+                      / ;     |.__)
+                     (_/.-.   ;
+                    { `|   \_/
+                     '-\   / |
+                        | /  |
+                       /  \  '-.
+                       \__|----'
+        parabéns jovem, você encontrou o coelho da sorte,
+        agora retorne ao seu trabalho.
+                   -->
 <?php
 session_start();
 
@@ -31,75 +53,7 @@ $niveis = $nivel->listar();
     <link href="static/images/favicon.png" rel="icon" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <style>
-        .hero {
-            background: linear-gradient(to right, #212529, #636365);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .navbar-brand img {
-            max-width: 85px;
-        }
-
-        .topo-titulo {
-            background: linear-gradient(to right, #212529, #636365);
-            color: white;
-            padding: 50px;
-            margin-bottom: 20px;
-        }
-
-        .category-btn {
-            margin: 5px;
-        }
-
-        .popular-card img {
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .footer {
-            background: linear-gradient(to right, #212529, #272525);
-            color: white;
-            padding: 30px;
-        }
-
-        .footer img {
-            filter: brightness(0) invert(1);
-        }
-
-        /* sidebar */
-        .sidebar {
-            width: 100%;
-            background-color: #ebebeb;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            border-radius: 10px;
-        }
-
-        .sidebar .nav-link {
-            color: #333;
-        }
-
-        .sidebar .nav-link:hover {
-            background-color: #e9ecef;
-        }
-
-        .sidebar .nav-item .nav-link.active {
-            background-color: #007bff;
-            color: white;
-
-        }
-        .user-icon{
-            max-width: 300px;
-            width: 50%;
-            border-radius: 50%;
-        }
-        .ray-editor-content{
-            min-height: 250px;
-        }
-    </style>
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 
 <body>
@@ -185,7 +139,7 @@ $niveis = $nivel->listar();
                                 // Gera a lista de categorias
                                 foreach ($niveis as $ni) {
                             ?>
-                                    <li><a class="dropdown-item" href="aulas_listar.php?nivel=<?= $ni['id']; ?>"><?= $ni['nome'] ?></a></li>
+                                    <li><a class="dropdown-item" href="cursos_listar.php?nivel=<?= $ni['id']; ?>"><?= $ni['nome'] ?></a></li>
                             <?php
                                 }
                             }
@@ -205,8 +159,8 @@ $niveis = $nivel->listar();
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
                         <li><a class="dropdown-item" href="painel.php">Perfil</a></li>
-                        <li><a class="dropdown-item" href="painel_aulas.php">Minhas Aulas</a></li>
-                        <li><a class="dropdown-item" href="painel_aulas.php">Meus Planos de Aulas</a></li>
+                        <li><a class="dropdown-item" href="aulas_minhas.php">Minhas Aulas</a></li>
+                        <li><a class="dropdown-item" href="planos_listar.php">Meus Planos de Aula</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

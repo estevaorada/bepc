@@ -1,0 +1,72 @@
+     .hero {
+         background: linear-gradient(to right, #212529, #636365);
+         color: white;
+         padding: 80px 0;
+         text-align: center;
+     }
+
+     .navbar-brand img {
+         max-width: 85px;
+     }
+
+     .topo-titulo {
+         background: linear-gradient(to right, #212529, #636365);
+         color: white;
+         padding: 50px;
+         margin-bottom: 20px;
+     }
+
+     .category-btn {
+         margin: 5px;
+     }
+
+     .popular-card img {
+         height: 150px;
+         object-fit: cover;
+     }
+
+     .footer {
+         background: linear-gradient(to right, #212529, #272525);
+         color: white;
+         padding: 30px;
+     }
+
+     .footer img {
+         filter: brightness(0) invert(1);
+     }
+
+     /* sidebar */
+     .sidebar {
+         width: 100%;
+         background-color: #ebebeb;
+         padding-top: 20px;
+         padding-bottom: 20px;
+         border-radius: 10px;
+     }
+
+     .sidebar .nav-link {
+         color: #333;
+     }
+
+     .sidebar .nav-link:hover {
+         background-color: #e9ecef;
+     }
+
+     .sidebar .nav-item .nav-link.active {
+         background-color: #007bff;
+         color: white;
+
+     }
+
+     .user-icon {
+         max-width: 300px;
+         width: 50%;
+         border-radius: 50%;
+     }
+
+     .ray-editor-content {
+         min-height: 250px;
+     }
+     .conteudo-aula-carrinho{
+        cursor: grab;
+     }

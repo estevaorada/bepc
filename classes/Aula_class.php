@@ -28,6 +28,7 @@ class Aula
 
         try {
             if ($idAula == null) {
+                // Consulta para listar aulas com filtros opcionais
             $sql = "SELECT a.id, a.titulo, a.id_usuario, a.id_disciplina, a.data_cadastrada, SUBSTRING(a.descricao,1,300) AS 'descricao', a.id_categoria, a.observacoes,
                            u.nome AS usuario_nome, u.sobrenome AS 'usuario_sobrenome' , d.nome AS disciplina_nome, c.nome AS categoria_nome
                     FROM aulas a
@@ -38,6 +39,7 @@ class Aula
                     AND (:idDisciplina IS NULL OR a.id_disciplina = :idDisciplina1)
                     AND (:idAula IS NULL OR a.id = :idAula1)";
             } else {
+                // Consulta para obter detalhes de uma aula específica
             $sql = "SELECT a.id, a.titulo, a.id_usuario, a.id_disciplina, a.data_cadastrada, a.descricao, a.id_categoria, a.observacoes,
                            u.nome AS usuario_nome, u.sobrenome AS 'usuario_sobrenome' , d.nome AS disciplina_nome, c.nome AS categoria_nome
                     FROM aulas a
@@ -46,7 +48,8 @@ class Aula
                     INNER JOIN categorias c ON a.id_categoria = c.id
                     WHERE (:idUsuario IS NULL OR a.id_usuario = :idUsuario1)
                     AND (:idDisciplina IS NULL OR a.id_disciplina = :idDisciplina1)
-                    AND (:idAula IS NULL OR a.id = :idAula1)";
+                    AND (:idAula IS NULL OR a.id = :idAula1)
+                    ORDER BY a.data_cadastrada DESC";
             }
             $comando = $banco->prepare($sql);
 

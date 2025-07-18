@@ -50,62 +50,31 @@ require_once('includes/header.php');
   <div class="container">
     <h5 class="mb-4">📈 Aulas Mais Recentes</h5>
     <div class="row g-4">
-      <!-- Card 1 -->
-      <div class="col-md-3">
-        <div class="card popular-card">
-          <div class="card-body">
-            <h6 class="card-title">Introdução à Matemática Básica</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas voluptatibus praesentium culpa? Consequuntur similique placeat, assumenda...</p>
-            <p class="small">Por: Prof. Lucas Silva</p>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</button>
-              <button class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</button>
+      <?php
+      require_once('classes/Aula_class.php');
+      $aula = new Aula();
+      $aulas = $aula->listar(null, null, null);
+      foreach ($aulas as $a) {
+      ?>
+
+        <div class="col-md-3">
+          <div class="card popular-card">
+            <div class="card-body">
+              <h6 class="card-title"><?= htmlspecialchars(htmlspecialchars($a['titulo'])) ?></h6>
+              <p><?= $a['descricao'] . '...' ?></p>
+              <p class="small"><i class="bi bi-person-fill"></i> <?= $a['usuario_nome'] . " " . $a['usuario_sobrenome'] ?><br>
+                <i class="bi bi-journal-bookmark-fill"></i> <?= htmlspecialchars($a['disciplina_nome']) ?>
+              </p>
+              <div class="d-flex gap-2">
+                <a href="aula_detalhe.php?id=<?= htmlspecialchars($a['id']) ?>" class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</a>
+                <a href="actions/carrinho_adicionar.php?id=<?= htmlspecialchars($a['id']) ?>" class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="col-md-3">
-        <div class="card popular-card">
-          <div class="card-body">
-            <h6 class="card-title">Programação com Python</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas voluptatibus praesentium culpa? Consequuntur similique placeat, assumenda...</p>
-            <p class="small">Por: Prof. Ana Costa</p>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</button>
-              <button class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Card 3 -->
-      <div class="col-md-3">
-        <div class="card popular-card">
-          <div class="card-body">
-            <h6 class="card-title">Fotossíntese e Respiração</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas voluptatibus praesentium culpa? Consequuntur similique placeat, assumenda...</p>
-            <p class="small">Por: Prof. Carlos Lima</p>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</button>
-              <button class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Card 4 -->
-      <div class="col-md-3">
-        <div class="card popular-card">
-          <div class="card-body">
-            <h6 class="card-title">História do Brasil Colonial</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas voluptatibus praesentium culpa? Consequuntur similique placeat, assumenda...</p>
-            <p class="small">Por: Prof. João Santos</p>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-outline-dark w-100" type="button"><i class="bi bi-three-dots"></i> Detalhes</button>
-              <button class="btn btn-sm btn-dark w-100" type="button"><i class="bi bi-cart-plus"></i> Adicionar</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <?php
+      }
+      ?>
     </div>
   </div>
 </section>

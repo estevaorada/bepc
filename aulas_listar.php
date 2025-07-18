@@ -17,7 +17,7 @@ require_once('includes/heading_title.php');
                     <?php
                     require_once('classes/Aula_class.php');
                     $aula = new Aula();
-                    $aulas = $aula->listar($_SESSION['dados_usuario']['id'], null, null);
+                    $aulas = $aula->listar(NULL, null, null);
                     foreach ($aulas as $a) {
                     ?>
                         <!-- Card 1 -->
