@@ -18,7 +18,7 @@ require_once('includes/heading_title.php');
             <form method="GET" action="" class="mb-4">
                 <label for="curso" class="form-label">Curso</label>
                 <select name="curso" class="form-select" id="id_curso_sel" name="id_curso_sel" onchange="this.form.submit()">
-                    <option value="" disabled selected>Selecione a disciplina</option>
+                    <option value="" disabled selected>Selecione o curso</option>
                     <?php
                     foreach ($cursos as $c) {
                         $selected = (isset($_GET['curso']) && $_GET['curso'] == $c['id']) ? 'selected' : '';

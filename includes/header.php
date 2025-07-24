@@ -79,6 +79,7 @@ $niveis = $nivel->listar();
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="categoriasDropdown">
                             <?php
+                            $categorias = $categoria->listar(null, 10);
                             if (is_null($categorias)) {
                                 echo '<li><a class="dropdown-item" href="#">Erro ao carregar categorias</a></li>';
                             } elseif (empty($categorias)) {
@@ -105,6 +106,7 @@ $niveis = $nivel->listar();
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="cursosDropdown">
                             <?php
+                            $cursos = $curso->listar(NULL, 10);
                             if (is_null($cursos)) {
                                 echo '<li><a class="dropdown-item" href="#">Erro ao carregar cursos</a></li>';
                             } elseif (empty($cursos)) {

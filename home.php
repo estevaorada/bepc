@@ -28,17 +28,21 @@ require_once('includes/header.php');
     <h5 class="mb-3">Explore por Categoria</h5>
     <div>
       <?php
+      $categorias = $categoria->listar(null, 10);
       if (is_null($categorias)) {
         echo '<h2>Falha ao carregar </h2>';
       } elseif (empty($categorias)) {
-        echo '<li><a class="dropdown-item" href="#">Nenhum curso encontrado</a></li>';
+        echo '<li><a class="dropdown-item" href="#">Nenhuma categoria encontrada</a></li>';
       } else {
         // Gera a lista de categorias
         foreach ($categorias as $cat) {
       ?>
-          <a class="btn btn-outline-secondary category-btn" href="aulas_listar.php?curso=<?= $cat['id']; ?>"><?= $cat['nome'] ?></a>
-      <?php
+          <a class="btn btn-outline-secondary category-btn" href="aulas_listar.php?categoria=<?= $cat['id']; ?>"><?= $cat['nome'] ?></a>
+        <?php
         }
+        ?>
+        <a class="btn btn-dark category-btn" href="aulas_listar.php">Ver mais...</a>
+      <?php
       }
       ?>
     </div>

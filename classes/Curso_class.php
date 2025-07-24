@@ -60,7 +60,7 @@ class Curso
      * @param int|null $id ID do curso a ser listado (opcional)
      * @return array|null Retorna um array com os cursos ou um curso específico, ou null em caso de erro
      */
-    public function listar($id = null)
+    public function listar($id = null, $max = null)
     {
         $banco = Banco::conectar();
         if (!$banco) {
@@ -68,7 +68,7 @@ class Curso
         }
 
         try {
-            if (is_null($id)) {
+            if (is_null($id) && is_null($max)) {
                 // Lista todos os cursos
                 $sql = "SELECT c.id, c.nome, c.id_nivel, n.nome AS 'nivel_nome' FROM cursos c 
                 INNER JOIN niveis n ON c.id_nivel = n.id 
@@ -76,6 +76,15 @@ class Curso
                 $comando = $banco->prepare($sql);
                 $comando->execute();
                 return $comando->fetchAll(PDO::FETCH_ASSOC);
+            }else if(is_null($id) && !is_null($max)){
+                // Lista todas as categorias limitando
+                $sql = "SELECT c.id, c.nome, c.id_nivel, n.nome AS 'nivel_nome' FROM cursos c 
+                INNER JOIN niveis n ON c.id_nivel = n.id 
+                ORDER BY c.nome ASC LIMIT ?";
+                $comando = $banco->prepare($sql);
+                $comando->execute([$max]);
+                return $comando->fetchAll(PDO::FETCH_ASSOC);
+         
             } else {
                 // Lista um curso específico por ID
                 if (!is_numeric($id) || $id <= 0) {

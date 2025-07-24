@@ -55,7 +55,7 @@ class Categoria
      * @param int|null $id ID da categoria a ser listada (opcional)
      * @return array|null Retorna um array com as categorias ou uma categoria específica, ou null em caso de erro
      */
-    public function listar($id = null)
+    public function listar($id = null, $max = null)
     {
         $banco = Banco::conectar();
         if (!$banco) {
@@ -63,12 +63,19 @@ class Categoria
         }
 
         try {
-            if (is_null($id)) {
+            if (is_null($id) && is_null($max)) {
                 // Lista todas as categorias
                 $sql = "SELECT id, nome, descricao FROM categorias ORDER BY nome ASC";
                 $comando = $banco->prepare($sql);
                 $comando->execute();
                 return $comando->fetchAll(PDO::FETCH_ASSOC);
+            }else if(is_null($id) && !is_null($max)){
+                // Lista todas as categorias limitando
+                $sql = "SELECT id, nome, descricao FROM categorias ORDER BY nome ASC LIMIT ?";
+                $comando = $banco->prepare($sql);
+                $comando->execute([$max]);
+                return $comando->fetchAll(PDO::FETCH_ASSOC);
+         
             } else {
                 // Lista uma categoria específica por ID
                 if (!is_numeric($id) || $id <= 0) {
