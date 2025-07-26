@@ -16,10 +16,11 @@ $id_curso = filter_input(INPUT_POST, 'id_curso', FILTER_SANITIZE_SPECIAL_CHARS);
 $id_disciplina = filter_input(INPUT_POST, 'id_disciplina', FILTER_SANITIZE_SPECIAL_CHARS);
 $nome_aula = filter_input(INPUT_POST, 'nome_aula', FILTER_SANITIZE_SPECIAL_CHARS);
 
+// Sanitiza a descrição, permitindo apenas tags HTML seguras
+// e removendo atributos potencialmente perigosos
 $allowed_tags = '<p><b><font><u><strike><h1><h2><h3><h4><h5><h6><ol><li><ul><a><div><pre><code><table><tr><td><br>';
 $descricao = strip_tags($_POST['descricao'], $allowed_tags);
 $descricao = preg_replace('/<(script|iframe)\b[^<]*(?:(?!<\/\1>)<[^<]*)*<\/\1>/i', '', $descricao);
-// Remove all attributes except href and target on <a>
 $descricao = preg_replace('/<(\"a\")[^>]+href=[\'"]([^\'"]*)[\'"][^>]*target=[\'"]([^\'"]*)[\'"][^>]*>/i', '<a href="$2" target="$3">', $descricao);
 $descricao = preg_replace('/\s+(on\w+|style|class|contenteditable|spellcheck)\s*=\s*[\'"][^\'"]*[\'"]/i', '', $descricao);
 

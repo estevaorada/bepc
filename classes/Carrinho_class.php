@@ -72,4 +72,22 @@ class Carrinho
             return null;
         }
     }
+
+    public function limparCarrinho($id_usuario)
+    {
+        $banco = Banco::conectar();
+        if (!$banco) {
+            return false;
+        }
+
+        try {
+            $sql = "DELETE FROM carrinho WHERE id_usuario = ?";
+            $comando = $banco->prepare($sql);
+            return $comando->execute([$id_usuario]);
+        } catch (PDOException $e) {
+            error_log("Erro ao limpar carrinho: " . $e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 $heading_title = "Carrinho";
+
 if (isset($_COOKIE['id_curso_carrinho']) && !empty($_COOKIE['id_curso_carrinho']) && !isset($_GET['curso'])) {
     header('Location: carrinho.php?curso=' . $_COOKIE['id_curso_carrinho']);
 }
@@ -22,11 +23,14 @@ $carrinho_aulas = $carrinho->listar($_SESSION['dados_usuario']['id']);
         <div class="row">
             <div class="col-12">
                 <div id="aulasContainer">
-                    <?php foreach ($carrinho_aulas as $aula) { ?>
+                    <?php
+                    // Exibe as aulas do carrinho
+                    $cont_carrinho = 1;
+                    foreach ($carrinho_aulas as $aula) { ?>
                         <!-- Linha de conteúdo -->
-                        <div class="row border rounded p-3 mb-2 conteudo-aula-carrinho" data-id="1">
+                        <div class="row border rounded p-3 mb-2 conteudo-aula-carrinho" data-id="<?= $cont_carrinho ?>">
                             <div class="col-md-1 id-aula">
-                                #1
+                                #<?= $cont_carrinho ?>
                             </div>
                             <div class="col-md-8">
                                 <p class="fw-bold"><a href="aula_detalhe.php?id=<?= $aula['id'] ?>" class="text-black"><?= $aula['titulo'] ?></a> <i class="bi bi-arrow-up-right-square-fill"></i></p>
@@ -36,7 +40,10 @@ $carrinho_aulas = $carrinho->listar($_SESSION['dados_usuario']['id']);
                                 <a href="carrinho_apagar_aula.php?id=<?= $aula['id'] ?>" class="btn btn-danger btn-sm "><i class="bi bi-x-square"></i></a>
                             </div>
                         </div>
-                    <?php  } ?>
+                    <?php
+                        $cont_carrinho++;
+                  } 
+                  ?>
                 </div>
 
             </div>
@@ -103,10 +110,10 @@ $carrinho_aulas = $carrinho->listar($_SESSION['dados_usuario']['id']);
             </div>
         </div>
     </div>
-    </form>
+    <!-- </form>
     </div>
     </div>
-    </div>
+    </div> wtf? -->
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -194,7 +201,7 @@ $carrinho_aulas = $carrinho->listar($_SESSION['dados_usuario']['id']);
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <img src="static/images/empty-cart.png" alt="Carrinho vazio" class="img-fluid"/>
+                <img src="static/images/empty-cart.png" alt="Carrinho vazio" class="img-fluid" />
                 <h2>Seu carrinho pedagógico está vazio.</h2>
             </div>
         </div>
