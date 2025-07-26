@@ -152,23 +152,26 @@ $niveis = $nivel->listar();
                 <form class="d-flex me-2">
                     <input class="form-control me-2" id="busca_topo" name="busca_topo" type="search" placeholder="Buscar aulas..." aria-label="Buscar aulas">
                 </form>
-                <a class="btn btn-outline-secondary me-2" href="aulas_criar.php">+ Criar Aula</a>
-                <a href="carrinho.php" class="btn btn-dark"><i class="bi bi-basket2"></i></a>
-                <!-- Dropdown Usuário -->
-                <div class="dropdown ms-2">
-                    <button class="btn btn-dark dropdown-toggle" type="button" id="usuarioDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['dados_usuario']['nome']); ?>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
-                        <li><a class="dropdown-item" href="painel.php">Perfil</a></li>
-                        <li><a class="dropdown-item" href="aulas_minhas.php">Minhas Aulas</a></li>
-                        <li><a class="dropdown-item" href="planos_listar.php">Meus Planos de Aula</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="sair.php">Sair</a></li>
-                    </ul>
+                <div class="grupo-botoes mt-2 mt-sm-2 mt-md-0 d-flex align-items-center">
+                    <a class="btn btn-outline-secondary me-2" href="aulas_criar.php">+ Criar Aula</a>
+                    <a href="carrinho.php" class="btn btn-dark"><i class="bi bi-basket2"></i></a>
+                    <!-- Dropdown Usuário -->
+                    <div class="dropdown ms-2">
+                        <button class="btn btn-dark dropdown-toggle" type="button" id="usuarioDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['dados_usuario']['nome']); ?>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+                            <li><a class="dropdown-item" href="painel.php">Perfil</a></li>
+                            <li><a class="dropdown-item" href="aulas_minhas.php">Minhas Aulas</a></li>
+                            <li><a class="dropdown-item" href="planos_listar.php">Meus Planos de Aula</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="sair.php">Sair</a></li>
+                        </ul>
+                    </div>
                 </div>
+
             </div>
         </div>
     </nav>

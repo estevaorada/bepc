@@ -12,66 +12,79 @@ if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
             <div class="col-md-4">
                 <?php require_once('includes/sidemenu.php'); ?>
             </div>
-            <div class="col-md-8">
-                <button type="button" class="btn btn-dark mb-3 float-end" data-bs-toggle="modal" data-bs-target="#cadastroUsuarioModal">
-                    <i class="bi bi-plus-circle-fill"></i> Cadastrar Usuário
-                </button>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Sobrenome</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Situação</th>
-                            <th scope="col">Cadastro</th>
-                            <th scope="col">Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        require_once('classes/Usuario_class.php');
-                        $usuario = new Usuario();
-                        if (isset($_GET['ativo']) && $_GET['ativo'] == 0) {
-                            // Listar usuários inativos
-                            $usuarios = $usuario->listarTodos($_SESSION['dados_usuario']['id_tipo'], 0);
-                        } else {
-                            // Listar usuários ativos
-                            $usuarios = $usuario->listarTodos($_SESSION['dados_usuario']['id_tipo'], 1);
-                        }
-                        foreach ($usuarios as $us) {
-                        ?>
-                            <tr>
-                                <th scope="row"><?= $us['id'] ?></th>
-                                <td><?= $us['nome'] ?></td>
-                                <td><?= $us['sobrenome'] ?></td>
-                                <td><?= $us['email'] ?></td>
-                                <td><?= $us['tipo_nome'] ?></td>
-                                <td><?= $us['situacao'] ? 'Ativo' : 'Inativo' ?></td>
-                                <td><?= date('d/m/Y', strtotime($us['data_cadastro'])) ?></td>
+            <div class="col-md-8 mt-3">
+                <!-- Botão alinhado à direita acima dos cards -->
+                <div class="d-flex justify-content-end mb-3">
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cadastroUsuarioModal">
+                        <i class="bi bi-plus-circle-fill"></i> Cadastrar Usuário
+                    </button>
+                </div>
 
-                                <td>
-                                    <a type="button" class="btn btn-danger btn-sm me-2" href="actions/usuario_desativar.php?id=<?= $us['id'] ?>">
+                <?php
+                require_once('classes/Usuario_class.php');
+                $usuario = new Usuario();
+
+                if (isset($_GET['ativo']) && $_GET['ativo'] == 0) {
+                    $usuarios = $usuario->listarTodos($_SESSION['dados_usuario']['id_tipo'], 0);
+                } else {
+                    $usuarios = $usuario->listarTodos($_SESSION['dados_usuario']['id_tipo'], 1);
+                }
+
+                foreach ($usuarios as $us) {
+                    $dataCadastro = date('d/m/Y', strtotime($us['data_cadastro']));
+                    $situacao = $us['situacao'] ? 'Ativo' : 'Inativo';
+                ?>
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col-12 col-md-4">
+                                    <strong>ID:</strong> <?= $us['id'] ?>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <strong>Nome:</strong> <?= htmlspecialchars($us['nome']) ?>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <strong>Sobrenome:</strong> <?= htmlspecialchars($us['sobrenome']) ?>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-12 col-md-4">
+                                    <strong>Email:</strong> <?= htmlspecialchars($us['email']) ?>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <strong>Tipo:</strong> <?= htmlspecialchars($us['tipo_nome']) ?>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <strong>Situação:</strong> <?= $situacao ?>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6">
+                                    <strong>Cadastro:</strong> <?= $dataCadastro ?>
+                                </div>
+                                <div class="col-12 col-md-6 text-md-end mt-2 mt-md-0">
+                                    <a class="btn btn-danger btn-sm me-2" href="actions/usuario_desativar.php?id=<?= $us['id'] ?>">
                                         <i class="bi bi-x"></i>
                                     </a>
-                                    <a type="button" class="btn btn-dark btn-sm" href="actions/usuario_desativar.php?id=<?= $us['id'] ?>">
+                                    <a class="btn btn-dark btn-sm" href="actions/usuario_editar.php?id=<?= $us['id'] ?>">
                                         <i class="bi bi-pencil"></i>
                                     </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
 
-                                </td>
-                            </tr>
-                        <?php
-                        }
-                        ?>
 
-                    </tbody>
-                </table>
                 <?php
                 if (isset($_GET['ativo']) && $_GET['ativo'] == 0) {
                 ?>
-                     <a type="button" class="btn btn-success btn-sm float-end" href="gerenciar_usuarios.php">Listar usuários ativos</a>
-                    <?php
+                    <a type="button" class="btn btn-success btn-sm float-end" href="gerenciar_usuarios.php">Listar usuários ativos</a>
+                <?php
                 } else {
                 ?>
                     <a type="button" class="btn btn-secondary btn-sm float-end" href="gerenciar_usuarios.php?ativo=0">Listar usuários inativos</a>
