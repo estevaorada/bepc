@@ -86,7 +86,7 @@ class Carrinho
             return $comando->execute([$id_usuario]);
         } catch (PDOException $e) {
             error_log("Erro ao limpar carrinho: " . $e->getMessage());
-            echo $e->getMessage();
+            //echo $e->getMessage();
             return false;
         }
     }

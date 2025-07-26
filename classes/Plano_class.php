@@ -4,14 +4,15 @@ require_once('database/Banco_class.php');
 class Plano
 {
 
-    public function criarPlano($id_usuario = null, $titulo = null, $id_disciplina = null){
+    public function criarPlano($id_usuario = null, $titulo = null, $id_disciplina = null)
+    {
         $banco = Banco::conectar();
         if (!$banco) {
             return null;
         }
         if (is_null($id_usuario) || is_null($titulo) || is_null($id_disciplina)) {
             return null; // Retorna null se algum parâmetro obrigatório estiver faltando
-            
+
         }
         try {
             $sql = "INSERT INTO planos (id_usuario, titulo, id_disciplina) VALUES (:id_usuario, :titulo, :id_disciplina)";
@@ -32,7 +33,7 @@ class Plano
      * @param int|null $id_usuario ID do usuário logado (opcional)
      * @return array Lista de planos de aula
      */
-    public function listarPlanos($id_usuario = null)
+    public function listarPlanos($id_usuario = null, $id_plano = null)
     {
         $banco = Banco::conectar();
         if (!$banco) {
@@ -41,16 +42,29 @@ class Plano
         if (is_null($id_usuario)) {
             return null; // Retorna null se o ID do usuário não for fornecido
         }
+
         try {
-            $sql = "SELECT p.id, p.titulo, p.data_cadastrada, u.nome AS usuario_nome, u.sobrenome AS usuario_sobrenome
+            // Se um ID de plano específico for fornecido, filtra por ele
+            if (!is_null($id_plano)) {
+                $sql = "SELECT p.id, p.titulo, p.data_criacao, u.nome AS usuario_nome, u.sobrenome AS usuario_sobrenome
+                        FROM planos p
+                        INNER JOIN usuarios u ON p.id_usuario = u.id
+                        WHERE p.id = :id_plano AND p.id_usuario = :id_usuario";
+                $comando = $banco->prepare($sql);
+                $comando->execute([':id_plano' => $id_plano, ':id_usuario' => $id_usuario]);
+                return $comando->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $sql = "SELECT p.id, p.titulo, p.data_criacao, u.nome AS usuario_nome, u.sobrenome AS usuario_sobrenome
                     FROM planos p
                     INNER JOIN usuarios u ON p.id_usuario = u.id
-                    WHERE (:id_usuario IS NULL OR p.id_usuario = :id_usuario)
-                    ORDER BY p.data_cadastrada DESC";
-            $comando = $banco->prepare($sql);
-            $comando->execute([':id_usuario' => $id_usuario]);
-            return $comando->fetchAll(PDO::FETCH_ASSOC);
+                    WHERE p.id_usuario = :id_usuario
+                    ORDER BY p.data_criacao DESC";
+                $comando = $banco->prepare($sql);
+                $comando->execute([':id_usuario' => $id_usuario]);
+                return $comando->fetchAll(PDO::FETCH_ASSOC);
+            }
         } catch (PDOException $e) {
+            echo $e->getMessage();
             return null; // Retorna null em caso de erro
         }
     }
@@ -59,24 +73,25 @@ class Plano
      * @param int $id_plano ID do plano
      * @return array Detalhes do plano
      */
-    public function obterPlano($id_plano)
+    public function obterAulaPlano($id_plano = null, $id_usuario = null)
     {
         $banco = Banco::conectar();
         if (!$banco) {
             return null;
         }
-        if (is_null($id_plano)) {
-            return null; // Retorna null se o ID do plano não for fornecido
+        if (is_null($id_plano) || is_null($id_usuario)) {
+            return null; // Retorna null se o ID do plano não for fornecido ou se o ID do usuário não for fornecido
         }
         try {
-            $sql = "SELECT p.id, p.titulo, p.data_cadastrada, u.nome AS usuario_nome, u.sobrenome AS usuario_sobrenome
-                    FROM planos p
-                    INNER JOIN usuarios u ON p.id_usuario = u.id
-                    WHERE p.id = :id_plano";
+            $sql = "SELECT p.id, p.id_aula, a.titulo, a.descricao, a.id AS id_aula
+                    FROM aulas_planos p
+                    INNER JOIN aulas a ON p.id_aula = a.id
+                    WHERE p.id_plano = :id_plano";
             $comando = $banco->prepare($sql);
             $comando->execute([':id_plano' => $id_plano]);
-            return $comando->fetch(PDO::FETCH_ASSOC);
+            return $comando->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
+
             return null; // Retorna null em caso de erro
         }
     }
@@ -85,6 +100,8 @@ class Plano
      * @param int $id_plano ID do plano a ser excluído
      * @return bool Retorna true se a exclusão for bem-sucedida, false caso contrário
      */
+
+
     public function excluirPlano($id_plano)
     {
         $banco = Banco::conectar();
@@ -129,5 +146,3 @@ class Plano
         }
     }
 }
-
-?>
