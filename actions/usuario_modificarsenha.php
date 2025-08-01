@@ -16,13 +16,13 @@ $novaSenha = filter_input(INPUT_POST, 'novaSenha', FILTER_SANITIZE_SPECIAL_CHARS
 
 // Verifica se os campos obrigatórios estão preenchidos
 if (empty($senhaAtual)) {
-    header('Location: ../painel.php?msg=erro_senha_atual_vazia');
+    header('Location: ../painel.php?erro=usuario_erro_modificacao');
     exit;
 } elseif (empty($novaSenha) || strlen($novaSenha) < 6) {
-    header('Location: ../painel.php?msg=erro_nova_senha_invalida');
+    header('Location: ../painel.php?erro=usuario_erro_modificacao');
     exit;
 } elseif ($novaSenha !== filter_input(INPUT_POST, 'repetirNovaSenha', FILTER_SANITIZE_SPECIAL_CHARS)) {
-    header('Location: ../painel.php?msg=erro_senha_nao_confere');
+    header('Location: ../painel.php?erro=usuario_erro_modificacao');
     exit;
 }
 

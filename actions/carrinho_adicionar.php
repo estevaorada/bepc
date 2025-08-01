@@ -16,7 +16,7 @@ $id_aula = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 // Verifica se os campos obrigatórios estão preenchidos
 if (empty($id_aula)) {
-    header('Location: ../home.php?msg=id_vazio');
+    header('Location: ../home.php?erro=carrinho_erro');
     exit;
 }
 
@@ -30,15 +30,15 @@ try {
 
     if ($resultado) {
         // Sucesso na inserção
-        header('Location: ../carrinho.php?msg=add_ok');
+        header('Location: ../carrinho.php?msg=carrinho_add_ok');
     } else {
         // Falha na inserção
-        header('Location: ../carrinho.php?msg=falha_add');
+        header('Location: ../carrinho.php?erro=carrinho_erro');
     }
 } catch (Exception $e) {
     // Loga o erro (em produção, use um sistema de log como Monolog)
     error_log("Erro ao inserir no carrinho: " . $e->getMessage());
-    header('Location: ../carrinho.php?msg=falha_add');
+    header('Location: ../carrinho.php?erro=carrinho_erro');
 }
 
 exit;

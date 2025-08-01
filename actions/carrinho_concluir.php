@@ -17,7 +17,7 @@ $id_disciplina = isset($_POST['id_disciplina']) ? $_POST['id_disciplina'] : null
 
 // Verifica se os campos obrigatórios estão preenchidos
 if (is_null($titulo) || is_null($id_disciplina)) {
-    header('Location: ../carrinho.php?msg=1'); // Redireciona com mensagem de erro
+    header('Location: ../carrinho.php?erro=carrinho_erro_infos'); // Redireciona com mensagem de erro
     exit;
 }
 // Cria o plano de aula
@@ -44,13 +44,13 @@ if ($id_plano) {
         setcookie('id_curso_carrinho', '', time() - 3600, '/'); // Expira o cookie
         // Redireciona para a página de sucesso com js pra permitir que o localStorage seja apagado
         echo '<p>Plano de aula criado com sucesso!<br>Aguarde...</p>';
-        echo '<script>window.location.href = "../planos_listar.php?msg=0";</script>"';
+        echo '<script>window.location.href = "../planos_listar.php?msg=plano_ok";</script>"';
         //header('Location: ../planos_listar.php?msg=0');
     }
 } else {
     // Se houve um erro ao criar o plano, redireciona com mensagem de erro
     //echo '<script>alert("Erro ao criar o plano de aula. Tente novamente.");</script>';
-    header('Location: ../carrinho.php?msg=2');
+    header('Location: ../carrinho.php?erro=carrinho_erro_infos');
 }
 
 ?>

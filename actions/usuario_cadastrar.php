@@ -20,19 +20,19 @@ $id_tipo = filter_input(INPUT_POST, 'tipo', FILTER_VALIDATE_INT);
 
 // Verifica se os campos obrigatórios estão preenchidos
 if (empty($nome)) {
-    header('Location: ../gerenciar_usuarios.php?msg=erro_nome_vazio');
+    header('Location: ../gerenciar_usuarios.php?erro=usuario_erro_cadastro');
     exit;
 }else if (empty($sobrenome)) {
-    header('Location: ../gerenciar_usuarios.php?msg=erro_sobrenome_vazio');
+    header('Location: ../gerenciar_usuarios.php?erro=usuario_erro_cadastro');
     exit;
 }else if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header('Location: ../gerenciar_usuarios.php?msg=erro_email_invalido');
+    header('Location: ../gerenciar_usuarios.php?erro=usuario_erro_cadastro');
     exit;
 }else if (empty($senha)) {
-    header('Location: ../gerenciar_usuarios.php?msg=erro_senha_vazia');
+    header('Location: ../gerenciar_usuarios.php?erro=usuario_erro_cadastro');
     exit;
 }else if (empty($id_tipo) || !in_array($id_tipo, [1, 2])) {
-    header('Location: ../gerenciar_usuarios.php?msg=erro_tipo_invalido');
+    header('Location: ../gerenciar_usuarios.php?erro=usuario_erro_cadastro');
     exit;
 }
 
@@ -49,16 +49,16 @@ try {
             header('Location: ../gerenciar_usuarios.php?msg=cadastro_sucesso');
         } else {
             // Falha no cadastro (ex.: nome duplicado ou erro no banco)
-            header('Location: ../gerenciar_usuarios.php?msg=erro_cadastro');
+            header('Location: ../gerenciar_usuarios.php?erro=usuario_erro_cadastro');
         }
     }else {
         // Usuário não é administrador
-        header('Location: ../home.php');
+        header('Location: ../home.php?erro=usuario_erro');
     }
 } catch (Exception $e) {
     // Loga o erro (em produção, use um sistema de log como Monolog)
     error_log("Erro ao cadastrar categoria: " . $e->getMessage());
-    header('Location: ../gerenciar_usuarios.php?msg=erro_sistema');
+    header('Location: ../gerenciar_usuarios.php?erro=usuario_erro_cadastro');
 }
 
 exit;

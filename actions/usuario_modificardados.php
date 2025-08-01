@@ -17,13 +17,13 @@ $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
 
 // Verifica se os campos obrigatórios estão preenchidos
 if (empty($nome)) {
-    header('Location: ../painel.php?msg=erro_nome_vazio');
+    header('Location: ../painel.php?erro=usuario_erro_modificacao');
     exit;
 } elseif (empty($sobrenome)) {
-    header('Location: ../painel.php?msg=erro_sobrenome_vazio');
+    header('Location: ../painel.php?erro=usuario_erro_modificacao');
     exit;
 } elseif (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header('Location: ../painel.php?msg=erro_email_invalido');
+    header('Location: ../painel.php?erro=usuario_erro_modificacao');
     exit;
 }
 
@@ -46,12 +46,12 @@ try {
         header('Location: ../painel.php?msg=modificacao_sucesso');
     } else {
         // Falha na modificação (ex.: permissão negada ou erro no banco)
-        header('Location: ../painel.php?msg=erro_modificacao');
+        header('Location: ../painel.php?erro=usuario_erro_modificacao');
     }
 } catch (Exception $e) {
     // Loga o erro (em produção, use um sistema de log como Monolog)
     error_log("Erro ao modificar dados pessoais: " . $e->getMessage());
-    header('Location: ../painel.php?msg=erro_sistema');
+    header('Location: ../painel.php?erro=usuario_erro_modificacao');
 }
 
 exit;

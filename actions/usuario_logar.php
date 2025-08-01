@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         exit();
     }else{
         //echo "Usuário ou senha inválidos!";
-        header('Location: ../index.php?erro=0');
+        header('Location: ../index.php?erro=login');
         exit();
     }
 }else{

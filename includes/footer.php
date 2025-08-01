@@ -11,15 +11,19 @@
        </div>
      </div>
      <div class="row">
-      <div class="col-md-12 text-center mt-5">
-        <p class="fs-6">&copy <?php echo date("Y"); ?> - Banco de Estratégias Pedagógicas Colaborativo</p>
-      </div>
+       <div class="col-md-12 text-center mt-5">
+         <p class="fs-6">&copy <?php echo date("Y"); ?> - Banco de Estratégias Pedagógicas Colaborativo</p>
+       </div>
      </div>
 
    </div>
  </section>
-
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <?php if(isset($_GET['erro']) || isset($_GET['msg'])){
+        // Inclui o arquivo de mensagens de erro/sucesso
+        require_once('includes/arrays_avisos.php');
+        echo "<script>window.history.replaceState(null, '', window.location.pathname);</script>";
+    } 
+    ?>
  </body>
-
  </html>

@@ -31,8 +31,8 @@ $id_categoria = filter_input(INPUT_POST, 'id_categoria', FILTER_SANITIZE_SPECIAL
 // Verifica se os campos obrigatórios estão preenchidos
 if (empty($id_curso) || empty($id_disciplina) || empty($nome_aula) || empty($descricao) || empty($id_categoria)) {
     print_r($_POST);
-    print("Id curso: $id_curso, Id disciplina: $id_disciplina, Nome aula: $nome_aula, Descrição: $descricao, Observações: $observacoes, Id categoria: $id_categoria");
-    //header('Location: ../aulas_minhas.php?msg=erro_nome_vazio');
+    //print("Id curso: $id_curso, Id disciplina: $id_disciplina, Nome aula: $nome_aula, Descrição: $descricao, Observações: $observacoes, Id categoria: $id_categoria");
+    header('Location: ../aulas_minhas.php?erro=aula_erro');
     exit;
 }
 
@@ -53,7 +53,7 @@ try {
 
     if ($resultado) {
         // Sucesso no cadastro
-        header('Location: ../aulas_minhas.php?msg=cadastro_sucesso');
+        header('Location: ../aulas_minhas.php?msg=aula_cadastro_sucesso');
     } else {
         // Falha no cadastro (ex.: nome duplicado ou erro no banco)
 
@@ -62,7 +62,7 @@ try {
 } catch (Exception $e) {
     // Loga o erro
     error_log("Erro ao cadastrar categoria: " . $e->getMessage());
-    header('Location: ../aulas_minhas.php?msg=erro_sistema');
+    header('Location: ../aulas_minhas.php?erro=aula_erro');
 }
 
 exit;

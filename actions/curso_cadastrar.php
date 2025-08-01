@@ -17,7 +17,7 @@ $nivelCurso = filter_input(INPUT_POST, 'nivelCurso', FILTER_SANITIZE_SPECIAL_CHA
 
 // Verifica se os campos obrigatórios estão preenchidos
 if (empty($nomeCurso) || empty($nivelCurso)) {
-    header('Location: ../gerenciar_cursosniveis.php?msg=erro_nome_vazio');
+    header('Location: ../gerenciar_cursosniveis.php?erro=curso_erro');
     exit;
 }
 
@@ -34,16 +34,16 @@ try {
             header('Location: ../gerenciar_cursosniveis.php?msg=cadastro_sucesso');
         } else {
             // Falha no cadastro (ex.: nome duplicado ou erro no banco)
-            header('Location: ../gerenciar_cursosniveis.php?msg=erro_cadastro');
+            header('Location: ../gerenciar_cursosniveis.php?erro=curso_erro');
         }
     }else {
         // Usuário não é administrador
-        header('Location: ../gerenciar_cursosniveis.php?msg=acesso_negado');
+        header('Location: ../gerenciar_cursosniveis.php?erro=usuario_erro');
     }
 } catch (Exception $e) {
     // Loga o erro (em produção, use um sistema de log como Monolog)
     error_log("Erro ao cadastrar curso: " . $e->getMessage());
-    header('Location: ../gerenciar_cursosniveis.php?msg=erro_sistema');
+    header('Location: ../gerenciar_cursosniveis.php?erro=curso_erro');
 }
 
 exit;

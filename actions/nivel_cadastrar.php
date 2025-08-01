@@ -16,7 +16,7 @@ $nomeNivel = filter_input(INPUT_POST, 'nomeNivel', FILTER_SANITIZE_SPECIAL_CHARS
 
 // Verifica se os campos obrigatórios estão preenchidos
 if (empty($nomeNivel)) {
-    header('Location: ../gerenciar_cursosniveis.php?msg=erro_nome_vazio');
+    header('Location: ../gerenciar_cursosniveis.php?erro=nivel_erro');
     exit;
 }
 
@@ -33,16 +33,16 @@ try {
             header('Location: ../gerenciar_cursosniveis.php?msg=cadastro_sucesso');
         } else {
             // Falha no cadastro (ex.: nome duplicado ou erro no banco)
-            header('Location: ../gerenciar_cursosniveis.php?msg=erro_cadastro');
+            header('Location: ../gerenciar_cursosniveis.php?erro=nivel_erro');
         }
     }else {
         // Usuário não é administrador
-        header('Location: ../gerenciar_cursosniveis.php?msg=acesso_negado');
+        header('Location: ../gerenciar_cursosniveis.php?erro=usuario_erro');
     }
 } catch (Exception $e) {
     // Loga o erro (em produção, use um sistema de log como Monolog)
     error_log("Erro ao cadastrar nivel: " . $e->getMessage());
-    header('Location: ../gerenciar_cursosniveis.php?msg=erro_sistema');
+    header('Location: ../gerenciar_cursosniveis.php?erro=nivel_erro');
 }
 
 exit;
