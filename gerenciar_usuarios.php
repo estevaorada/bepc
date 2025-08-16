@@ -26,8 +26,10 @@ if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
 
                 if (isset($_GET['ativo']) && $_GET['ativo'] == 0) {
                     $usuarios = $usuario->listarTodos($_SESSION['dados_usuario']['id_tipo'], 0);
+                    $inativo = true;
                 } else {
                     $usuarios = $usuario->listarTodos($_SESSION['dados_usuario']['id_tipo'], 1);
+                    $inativo = false;
                 }
 
                 foreach ($usuarios as $us) {
@@ -65,12 +67,16 @@ if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
                                     <strong>Cadastro:</strong> <?= $dataCadastro ?>
                                 </div>
                                 <div class="col-12 col-md-6 text-md-end mt-2 mt-md-0">
+                                    <?php if(!$inativo) { ?>
+                                    <?php if($us['id'] != $_SESSION['dados_usuario']['id']) { ?>
                                     <a class="btn btn-danger btn-sm me-2" href="actions/usuario_desativar.php?id=<?= $us['id'] ?>">
                                         <i class="bi bi-x"></i>
                                     </a>
+                                    <?php } ?>
                                     <a class="btn btn-dark btn-sm" href="actions/usuario_editar.php?id=<?= $us['id'] ?>">
                                         <i class="bi bi-pencil"></i>
                                     </a>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

@@ -146,11 +146,16 @@ class Usuario
         }
     }
 
-    public function desativar($id)
+    public function desativar($idTipoUsuario, $id)
     {
         // Validação de entrada
         if (!is_numeric($id) || $id <= 0) {
             return false;
+        }
+
+        // Validação de permissão
+        if (!is_numeric($idTipoUsuario) || $idTipoUsuario != 1) {
+            return null; // Apenas usuários com id_tipo == 1 podem acessar
         }
 
         $banco = Banco::conectar();
@@ -174,6 +179,7 @@ class Usuario
 
             return $result;
         } catch (PDOException $e) {
+            echo $e->getMessage();
             error_log("Erro ao ativar usuário: " . $e->getMessage());
             return false;
         }

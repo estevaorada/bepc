@@ -11,6 +11,8 @@ $arr_erros = array(
     'nivel_erro' => 'Erro ao cadastrar nível. Verifique os dados e tente novamente.',
     'usuario_erro_cadastro' => 'Erro ao cadastrar usuário. Verifique os dados e tente novamente.',
     'usuario_erro_modificacao' => 'Erro ao modificar dados do usuário. Verifique os dados e tente novamente.',
+    'usuario_erro_desativar' => 'Erro ao desativar usuário. Tente novamente.',
+    'erro' => 'Ocorreu um erro inesperado. Tente novamente mais tarde.',
 );
 $arr_msg = array(
     'aula_cadastro_sucesso' => 'Aula cadastrada com sucesso!',
@@ -19,6 +21,7 @@ $arr_msg = array(
     'cadastro_sucesso' => 'Cadastro realizado com sucesso!',
     'modificacao_sucesso' => 'Dados pessoais do usuário modificados com sucesso!',
     'senha_modificada_sucesso' => 'Senha modificada com sucesso!',
+    'usuario_desativado' => 'Usuário desativado com sucesso!',
 );
 
 
