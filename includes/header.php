@@ -128,7 +128,7 @@ $niveis = $nivel->listar();
                         </ul>
                     </li>
                     <!-- Dropdown Níveis -->
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="niveisDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Níveis
                         </a>
@@ -148,10 +148,14 @@ $niveis = $nivel->listar();
                             }
                             ?>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
-                <form class="d-flex me-2">
-                    <input class="form-control me-2" id="busca_topo" name="busca_topo" type="search" placeholder="Buscar aulas..." aria-label="Buscar aulas">
+                <!-- Formulário de busca -->
+                <form class="d-flex me-2 position-relative" id="form-busca-topo" action="aulas_listar.php" method="get">
+                    <input class="form-control me-2 pe-5" id="busca" name="busca" type="search" placeholder="Buscar aulas..." aria-label="Buscar aulas">
+                    <button type="submit" class="position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent p-0 me-2">
+                        <i class="bi bi-search" style="font-size: 1rem;"></i>
+                    </button>
                 </form>
                 <div class="grupo-botoes mt-2 mt-sm-2 mt-md-0 d-flex align-items-center">
                     <a class="btn btn-outline-secondary me-2" href="aulas_criar.php">+ Criar Aula</a>

@@ -67,6 +67,22 @@
      .ray-editor-content {
          min-height: 250px;
      }
-     .conteudo-aula-carrinho{
-        cursor: grab;
+
+     .conteudo-aula-carrinho {
+         cursor: grab;
+     }
+
+     #form-busca-topo .bi-search {
+
+         color: #4e4e4e;
+         /* Cor padrão do Bootstrap para ícones */
+     }
+
+     #form-busca-topo .bi-search {
+         margin-right: 10px;
+     }
+
+     #form-busca-topo .bi-search:hover {
+         color: #0e0e0e;
+         /* Cor ao passar o mouse */
      }

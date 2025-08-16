@@ -23,20 +23,23 @@ class Aula
     {
         $banco = Banco::conectar();
         if (!$banco) {
+            
             return null;
+
         }
 
         try {
             if ($idAula == null) {
                 // Consulta para listar aulas com filtros opcionais
             $sql = "SELECT a.id, a.titulo, a.id_usuario, a.id_disciplina, a.data_cadastrada, SUBSTRING(a.descricao,1,300) AS 'descricao', a.id_categoria, a.observacoes,
-                           u.nome AS usuario_nome, u.sobrenome AS 'usuario_sobrenome' , d.nome AS disciplina_nome, c.nome AS categoria_nome
+                           u.nome AS usuario_nome, u.sobrenome AS 'usuario_sobrenome' , d.nome AS disciplina_nome, c.nome AS categoria_nome, d.id_curso AS disciplina_curso_id
                     FROM aulas a
                     INNER JOIN usuarios u ON a.id_usuario = u.id
                     INNER JOIN disciplinas d ON a.id_disciplina = d.id
                     INNER JOIN categorias c ON a.id_categoria = c.id
                     WHERE (:idUsuario IS NULL OR a.id_usuario = :idUsuario1)
                     AND (:idDisciplina IS NULL OR a.id_disciplina = :idDisciplina1)
+                    AND (:idCurso IS NULL OR d.id_curso = :idCurso1)
                     AND (:idAula IS NULL OR a.id = :idAula1)";
             } else {
                 // Consulta para obter detalhes de uma aula específica
@@ -48,6 +51,7 @@ class Aula
                     INNER JOIN categorias c ON a.id_categoria = c.id
                     WHERE (:idUsuario IS NULL OR a.id_usuario = :idUsuario1)
                     AND (:idDisciplina IS NULL OR a.id_disciplina = :idDisciplina1)
+                    AND (:idCurso IS NULL OR d.id_curso = :idCurso1)
                     AND (:idAula IS NULL OR a.id = :idAula1)
                     ORDER BY a.data_cadastrada DESC";
             }
@@ -59,7 +63,9 @@ class Aula
                 ':idUsuario1' => $idUsuario,
                 ':idDisciplina1' => $idDisciplina,
                 ':idAula1' => $idAula,
-                'idAula' => $idAula
+                'idAula' => $idAula,
+                ':idCurso1' => $idCurso,
+                ':idCurso' => $idCurso
             ]);
             $aulas = $comando->fetchAll(PDO::FETCH_ASSOC);
             if ($idAula == null) {
@@ -70,12 +76,46 @@ class Aula
             }
             return $aulas;
         } catch (PDOException $e) {
-            // echo $e->getMessage();
+            //echo $e->getMessage();
+            
             error_log("Erro ao listar aulas: " . $e->getMessage());
             return null;
         }
     }
 
+    public function buscar($termo){
+        $banco = Banco::conectar();
+        if (!$banco) {
+            return null;
+        }
+        if (empty($termo)) {
+            return null; // Retorna null se o termo de busca estiver vazio
+        }
+        // Sanitiza o termo de busca para evitar injeção de SQL
+        $termo = htmlspecialchars(strip_tags($termo));
+        try {
+            $sql = "SELECT a.id, a.titulo, a.id_usuario, a.id_disciplina, a.data_cadastrada, SUBSTRING(a.descricao,1,300) AS 'descricao', a.id_categoria, a.observacoes,
+                            u.nome AS usuario_nome, u.sobrenome AS 'usuario_sobrenome' , d.nome AS disciplina_nome, c.nome AS categoria_nome, d.id_curso AS disciplina_curso_id
+                    FROM aulas a
+                    INNER JOIN usuarios u ON a.id_usuario = u.id
+                    INNER JOIN disciplinas d ON a.id_disciplina = d.id
+                    INNER JOIN categorias c ON a.id_categoria = c.id
+                    WHERE a.titulo LIKE :termo OR a.descricao LIKE :termo1
+                    ORDER BY a.data_cadastrada DESC";
+            $comando = $banco->prepare($sql);
+            $comando->execute([':termo' => '%' . $termo . '%', ':termo1' => '%' . $termo . '%']);
+            $aulas = $comando->fetchAll(PDO::FETCH_ASSOC);
+            // Remover tags HTML da descrição
+            foreach ($aulas as &$item) {
+                $item['descricao'] = substr(strip_tags($item['descricao']), 0, 100);
+            }
+            return $aulas;
+        } catch (PDOException $e) {
+            //echo $e->getMessage();
+            error_log("Erro ao buscar aulas: " . $e->getMessage());
+            return null;
+        }
+    }
     /**
      * Apaga uma aula específica.
      * Apenas administradores (id_tipo == 1) ou o criador da aula podem apagar.
