@@ -38,10 +38,10 @@ if (empty($nome)) {
 
 try {
     if ($_SESSION['dados_usuario']['id_tipo'] == 1) {
-        // Instancia a classe Categoria
+        // Instancia a classe Usuario
         $u = new Usuario();
 
-        // Tenta cadastrar a categoria
+        // Tenta cadastrar a usuario
         $resultado = $u->cadastrar($nome, $sobrenome, $id_tipo, $email, $senha);
 
         if ($resultado) {
@@ -56,8 +56,8 @@ try {
         header('Location: ../home.php?erro=usuario_erro');
     }
 } catch (Exception $e) {
-    // Loga o erro (em produção, use um sistema de log como Monolog)
-    error_log("Erro ao cadastrar categoria: " . $e->getMessage());
+    // Loga o erro
+    error_log("Erro ao cadastrar usuario: " . $e->getMessage());
     header('Location: ../gerenciar_usuarios.php?erro=usuario_erro_cadastro');
 }
 

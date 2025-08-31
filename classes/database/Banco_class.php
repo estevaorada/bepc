@@ -1,12 +1,13 @@
 <?php
+require_once ('./config.php');
 
 class Banco
 {
     // As credenciais devem ser trocadas de acordo com o banco de dados:
-    private static $dbNome = 'bepc';
-    private static $dbHost = 'localhost';
-    private static $dbUsuario = 'root';
-    private static $dbSenha = '';
+    private static $dbNome = DB_NOME; 
+    private static $dbHost = DB_SERVIDOR;
+    private static $dbUsuario = DB_USUARIO;
+    private static $dbSenha = DB_SENHA;
 
     private static $cont = null;
 

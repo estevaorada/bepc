@@ -1,0 +1,17 @@
+bepc
+├── (raiz) Arquivos de navegação, como index.php, sair.php...
+├── actions
+│   └── Arquivos PHP que recebem dados de formulários
+├── classes
+│   ├── database
+│   │   └── Banco_class.php (Arquivo de configuração de conexão com o banco de dados)
+│   └── Classes com instruções para manipulação do banco de dados de acordo com a entidade
+├── includes
+│   └── Arquivos PHP que podem ser incluídos de forma repetida em diverse outros arquivos, como cabeçalho, rodapé e menus.
+└── static
+    ├── css
+    │   └── Arquivos de estilo CSS
+    └── images
+        └── Ícones e imagens
+
+
